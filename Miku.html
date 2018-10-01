@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易初音3D相册</title>
+	<script src = "jq/jquery-3.3.1.development.js"></script>
+    <style>
+        body,html{
+            position: relative;
+            padding:0;
+            margin:0;
+            height:100%;
+            overflow: hidden;
+        }
+        #contain{
+            width:400px;
+            height:230px;
+            position: relative;
+            margin:auto;
+            margin-top:-150px;
+            top:50%;
+            perspective-origin:top; 
+            perspective: 2000px;
+        }
+        #state{
+            height:100%;
+            width:100%;
+            transform-style: preserve-3d; 
+            animation: scroll infinite 60s linear;
+        }
+        @keyframes scroll{
+            0%{
+                transform: rotateY(0deg) rotateX(0deg);
+            }100%{
+                transform: rotateY(1080deg) rotateX(720deg);
+            }
+        }
+        .pic{
+            width:100%;
+            height:100%;
+            position: absolute;
+            opacity: 0.9;
+            border: 7px solid rgb(212, 255, 251);
+            overflow: hidden;
+        }
+        img{
+            width:400px;
+            height:230px;
+            cursor: pointer;
+            transition:1s;
+        }
+        #one{
+            transform: translateZ(700px);
+        }
+        #two{
+            transform: rotateY(36deg) translateZ(700px);
+        }
+        #three{
+            transform: rotateY(72deg) translateZ(700px) ;
+        }
+        #four{
+            transform: rotateY(108deg) translateZ(700px) ;
+        }
+        #five{
+            transform: rotateY(144deg) translateZ(700px) ;
+        }
+        #six{
+            transform: rotateY(180deg) translateZ(700px) ;
+        }
+        #seven{
+            transform: rotateY(216deg) translateZ(700px) ;
+        }
+        #eight{
+            transform: rotateY(252deg) translateZ(700px) ;
+        }
+        #nine{
+            transform: rotateY(288deg) translateZ(700px) ;
+        }
+        #ten{
+            transform: rotateY(324deg) translateZ(700px) ;
+        }
+        #two2{
+            transform: rotateX(30deg) translateZ(700px) ;
+        }
+        #three3{
+            transform: rotateX(60deg) translateZ(700px) ;
+        }
+        #four4{
+            transform: rotateX(90deg) translateZ(700px) ;
+        }
+        #five5{
+            transform: rotateX(120deg) translateZ(700px) ;
+        }
+        #six6{
+            transform: rotateX(150deg) translateZ(700px) ;
+        }
+        #eight8{
+            transform: rotateX(210deg) translateZ(700px) ;
+        }
+        #nine9{
+            transform: rotateX(240deg) translateZ(700px) ;
+        }
+        #ten10{
+            transform: rotateX(270deg) translateZ(700px) ;
+        }
+        #eleven11{
+            transform: rotateX(300deg) translateZ(700px) ;
+        }
+        #twelve12{
+            transform: rotateX(330deg) translateZ(700px) ;
+        }
+        #background{
+            top:0;
+            left:0;
+            position: absolute;
+            z-index: -2;
+            background:url(source/壁纸18.jpg);
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            height:100%;
+            width:100%;
+            transition: 1s;
+        }
+        #opacity{
+            top:0;
+            left:0;
+            position: absolute;
+            z-index: -1;
+            height:100%;
+            width:100%;
+            background: rgba(0,0,0,.3);
+        }
+    </style>
+	<script>
+    window.addEventListener('load',()=>{
+        var state = document.querySelector('#state');
+        var button = document.querySelector('button');
+        var background = document.querySelector('#background');
+        var deg = 0;
+        var perspective = 2000;
+        var img = document.images;
+        for(let i = 0 ; i < img.length ; i ++){
+            img[i].addEventListener('mouseover',function(){
+                state.style.animationPlayState = "paused";
+                this.style.width = "450px";
+                this.style.height = "250px";
+                this.style.marginLeft = "-25px";
+                this.style.marginTop = "-10px";
+            })
+            img[i].addEventListener('mouseout',function(){
+                state.style.animationPlayState = "running";
+                this.style.width = "400px";
+                this.style.height = "230px";
+                this.style.marginLeft = 0;
+                this.style.marginTop = 0;
+            })
+            img[i].addEventListener('click',function(){
+                background.style.backgroundImage = `url(${$(this).attr("src")})`;
+                console.log($(this).attr("src"));
+                background.style.backgroundSize = "cover";
+            })
+        }
+    })
+</script>
+</head>
+<body>
+    <div id = "contain">
+        <div id = "state">
+        <div class = "pic" id = "one"><img src="source/壁纸1.jpg" alt=""></div>
+        <div class = "pic" id = "two"><img src="source/壁纸2.jpg" alt=""></div>
+        <div class = "pic" id = "three"><img src="source/壁纸3.jpg" alt=""></div>
+        <div class = "pic" id = "four"><img src="source/壁纸4.jpg" alt=""></div>
+        <div class = "pic" id = "five"><img src="source/壁纸5.jpg" alt=""></div>
+        <div class = "pic" id = "six"><img src="source/壁纸6.jpg" alt=""></div>
+        <div class = "pic" id = "seven"><img src="source/壁纸7.jpg" alt=""></div>
+        <div class = "pic" id = "eight"><img src="source/壁纸8.jpg" alt=""></div>
+        <div class = "pic" id = "nine"><img src="source/壁纸9.jpg" alt=""></div>
+        <div class = "pic" id = "ten"><img src="source/壁纸10.jpg" alt=""></div>
+        <div class = "pic" id = "two2"><img src="source/壁纸12.jpg" alt=""></div>
+        <div class = "pic" id = "three3"><img src="source/壁纸13.jpg" alt=""></div>
+        <div class = "pic" id = "four4"><img src="source/壁纸14.jpg" alt=""></div>
+        <div class = "pic" id = "five5"><img src="source/壁纸15.jpg" alt=""></div>
+        <div class = "pic" id = "six6"><img src="source/壁纸16.jpg" alt=""></div>
+        <div class = "pic" id = "eight8"><img src="source/壁纸18.jpg" alt=""></div>
+        <div class = "pic" id = "nine9"><img src="source/壁纸19.jpg" alt=""></div>
+        <div class = "pic" id = "ten10"><img src="source/壁纸20.jpg" alt=""></div>
+        <div class = "pic" id = "eleven11"><img src="source/壁纸21.jpg" alt=""></div>
+        <div class = "pic" id = "twelve12"><img src="source/壁纸22.jpg" alt=""></div>
+    </div>
+    </div>
+    <div id = "background"></div>
+    <div id = "opacity"></div>
+</body>
+</html>
